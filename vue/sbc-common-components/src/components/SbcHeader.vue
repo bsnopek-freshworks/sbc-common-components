@@ -257,11 +257,11 @@ export default class SbcHeader extends NavigationMixin {
   private async goToAccountInfo (settings: UserSettings) {
     await this.syncCurrentAccount(settings)
     ConfigHelper.addToSession(SessionStorageKeys.CurrentAccount, JSON.stringify(settings))
-    this.navigateTo(ConfigHelper.getAuthContextPath(), settings.urlpath)
+    window.location.assign(`${ConfigHelper.getAuthContextPath()}account/${this.currentAccount.id}/settings/account-info`)
   }
 
   private goToTeamMembers () {
-    this.navigateTo(ConfigHelper.getAuthContextPath(), `/account/${this.currentAccount.id}/settings/team-members`)
+    window.location.assign(`${ConfigHelper.getAuthContextPath()}account/${this.currentAccount.id}/settings/team-members`)
   }
 
   private async switchAccount (settings: UserSettings) {
