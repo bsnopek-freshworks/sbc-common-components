@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar-container">
+  <v-expand-transition class="toolbar-container" v-if="showNavBar">
     <div class="nav-small" v-if="$vuetify.breakpoint.smAndDown">
       <v-toolbar dark flat height="70" color="navMenuBg">
         <v-toolbar-title>
@@ -45,7 +45,7 @@
         </v-toolbar-items>
       </v-toolbar>
     </div>
-  </div>
+  </v-expand-transition>
 </template>
 
 <script lang="ts">
@@ -60,6 +60,10 @@ import { mapState } from 'vuex'
 export default class NavigationBar extends Vue {
   @Prop() configuration!: NavigationBarConfig
   private mobileNavDrawer = false
+
+  get showNavBar (): boolean {
+    return this.configuration && this.configuration.menuItems.length > 0
+  }
 }
 </script>
 
